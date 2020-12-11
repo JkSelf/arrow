@@ -355,7 +355,7 @@ TEST_P(CodecTest, CodecRoundtrip) {
     GTEST_SKIP() << "BZ2 does not support one-shot compression";
   }
   if (compression == Compression::FASTPFOR) {
-    // SKIP: BZ2 doesn't support one-shot compression without type
+    // SKIP: FastPFOR only support one-shot compression for 32bit and 64bit integer
     return;
   }
 
@@ -474,7 +474,7 @@ TEST_P(CodecTest, StreamingCompressor) {
     GTEST_SKIP() << "LZ4 raw format doesn't support streaming compression.";
   }
   if (GetCompression() == Compression::FASTPFOR) {
-    // SKIP: FastPFOR raw format doesn't support streaming decompression.
+    // SKIP: FastPFOR doesn't support streaming decompression.
     return;
   }
 
@@ -502,7 +502,7 @@ TEST_P(CodecTest, StreamingDecompressor) {
     GTEST_SKIP() << "LZ4 raw format doesn't support streaming decompression.";
   }
   if (GetCompression() == Compression::FASTPFOR) {
-    // SKIP: FastPFOR raw format doesn't support streaming decompression.
+    // SKIP: FastPFOR doesn't support streaming decompression.
     return;
   }
 
@@ -527,7 +527,7 @@ TEST_P(CodecTest, StreamingRoundtrip) {
     GTEST_SKIP() << "LZ4 raw format doesn't support streaming compression.";
   }
   if (GetCompression() == Compression::FASTPFOR) {
-    // SKIP: FastPFOR raw format doesn't support streaming decompression.
+    // SKIP: FastPFOR doesn't support streaming decompression.
     return;
   }
 
@@ -552,7 +552,7 @@ TEST_P(CodecTest, StreamingDecompressorReuse) {
     GTEST_SKIP() << "LZ4 raw format doesn't support streaming decompression.";
   }
   if (GetCompression() == Compression::FASTPFOR) {
-    // SKIP: FastPFOR raw format doesn't support streaming decompression.
+    // SKIP: FastPFOR doesn't support streaming decompression.
     return;
   }
 

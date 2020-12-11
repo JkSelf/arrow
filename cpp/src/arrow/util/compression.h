@@ -185,7 +185,7 @@ class ARROW_EXPORT Codec {
   virtual Status Init();
 
   /// \brief Create a codec for the given compression algorithm for the specific type
-  template<typename T>
+  template <typename T>
   static Result<std::unique_ptr<Codec>> CreateByType(
       Compression::type codec_type, int compression_level = kUseDefaultCompressionLevel);
 };
