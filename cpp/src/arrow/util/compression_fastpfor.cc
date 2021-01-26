@@ -75,12 +75,12 @@ class FastPForCodec : public Codec {
     return Status::NotImplemented("Streaming decompression unsupported with FastPFor");
   }
 
+  Compression::type compression_type() const override { return Compression::FASTPFOR; }
+
   Status Init() override {
     fastpfor_codec_ = FastPForLib::CODECFactory::getFromName("fastpfor256");
     return Status::OK();
   }
-
-  const char* name() const override { return "fastpfor"; }
 
  private:
   std::shared_ptr<FastPForLib::IntegerCODEC> fastpfor_codec_;

@@ -217,16 +217,16 @@ class RecordBatchSerializer {
     std::unique_ptr<util::Codec> fastpfor32_codec;
     std::unique_ptr<util::Codec> fastpfor64_codec;
     ARROW_ASSIGN_OR_RAISE(
-        codec, util::Codec::Create(Compression::LZ4_FRAME, options_.compression_level));
+        codec, util::Codec::Create(Compression::LZ4_FRAME, arrow::util::kUseDefaultCompressionLevel));
     ARROW_ASSIGN_OR_RAISE(
         fastpfor32_codec,
-        util::Codec::CreateInt32(Compression::FASTPFOR, options_.compression_level));
+        util::Codec::CreateInt32(Compression::FASTPFOR, arrow::util::kUseDefaultCompressionLevel));
     ARROW_ASSIGN_OR_RAISE(
         fastpfor64_codec,
-        util::Codec::CreateInt64(Compression::FASTPFOR, options_.compression_level));
+        util::Codec::CreateInt64(Compression::FASTPFOR, arrow::util::kUseDefaultCompressionLevel));
 
     AppendCustomMetadata("ARROW:experimental_compression",
-                         util::Codec::GetCodecAsString(options_.compression));
+                         util::Codec::GetCodecAsString(options_.codec->compression_type()));
 
     int32_t buffer_idx = 0;
     for (const auto& field : fields) {
