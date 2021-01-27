@@ -343,7 +343,7 @@ TEST(TestCodecMisc, GetCompressionType) {
   ASSERT_OK_AND_EQ(Compression::LZ4_FRAME, Codec::GetCompressionType("lz4"));
   ASSERT_OK_AND_EQ(Compression::ZSTD, Codec::GetCompressionType("zstd"));
   ASSERT_OK_AND_EQ(Compression::BZ2, Codec::GetCompressionType("bz2"));
-  ASSERT_OK_AND_EQ(Compression::FASTPFOR, Codec::GetCompressionType("fastpfor"));
+  ASSERT_OK_AND_EQ(Compression::FASTPFOR, Codec::GetCompressionType("FASTPFOR"));
 
   ASSERT_RAISES(Invalid, Codec::GetCompressionType("unk"));
   ASSERT_RAISES(Invalid, Codec::GetCompressionType("SNAPPY"));
@@ -390,7 +390,7 @@ TEST_P(CodecTest, CodecRoundtripByType) {
 
   for (int data_size : sizes) {
     std::vector<uint8_t> data = MakeRandomData(data_size);
-    CheckCodecRoundtrip(c1, c2, data);
+    CheckCodecRoundtrip(c1, c2, data, false);
   }
 
   // create multiple compressors to try to break them
@@ -399,7 +399,7 @@ TEST_P(CodecTest, CodecRoundtripByType) {
 
   for (int data_size : sizes) {
     std::vector<uint8_t> data = MakeRandomData(data_size);
-    CheckCodecRoundtrip(c1, c2, data);
+    CheckCodecRoundtrip(c1, c2, data, false);
   }
 }
 
